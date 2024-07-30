@@ -4,15 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Messages</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            margin: 1rem;
+        }
+        .message{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+        .card{
+            display: flex;
+            flex-direction: column;
+            border: 1px solid lightgrey;
+            padding: 1rem;
+            border-radius: 10px;
+            width: 20%;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h3><%= title %></h3>
+    <h2><%= title %></h2>
     <% messages.forEach((message) => { %>
-        <div>
-            <%= message.user %>
-            <%= message.text %>
-            <%= message.added %>
+        <div class="message">
+            <h4><%= message.user %></h4>
+            <div class="card">
+                <span><%= message.text %></span>
+                <span><%= message.added %></span>
+            </div>
         </div>
     <% }) %>
+    <a href="/new">Add Yours!</a>
 </body>
 </html>
