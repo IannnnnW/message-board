@@ -1,7 +1,8 @@
-const { messages } = require('../controllers/getMessagesController')
+const db = require("../db/queries")
+const asyncHandler = require("express-async-handler")
 
-exports.handleSubmit = (req, res, next) =>{
-    messages.push({user: req.body.name, text: req.body.message, added: new Date()})
-    console.log(messages)
+exports.handleSubmit = asyncHandler( async (req, res) =>{
+    const message = { text: req.body.message, name: req.body.name }
+    await db.insertNewMessage(message)
     res.redirect('/')
-}
+})

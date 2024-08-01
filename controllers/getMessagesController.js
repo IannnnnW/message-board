@@ -1,18 +1,7 @@
-let messages = [
-    {
-        text: "Hi there!",
-        user: "Amando",
-        added: new Date()
-    },
-    {
-        text: "Hello, World!",
-        user: "Charles",
-        added: new Date()
-    }
-]
+const db = require("../db/queries")
+const asyncHandler = require("express-async-handler")
 
-function viewMessages(req, res, next) {
+exports.viewMessages = asyncHandler( async (req, res)=>{
+    const messages =  await db.getAllMessages()
     res.render("index", {messages, title: 'Mini Messageboard'})
-}
-
-module.exports = {messages, viewMessages}
+})
