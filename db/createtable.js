@@ -9,14 +9,27 @@ CREATE TABLE messages (
     name VARCHAR (255),
     added TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 `
-async function main(){
-    console.log("creating...")
+async function main() {
+    const args = process.argv.slice(2);  
+    const connectionString = args[0]; 
+
+    console.log("creating...");
+
     const client = new Client({
-        connectionString: process.env.CONNECTION_STRING
-    })
-    await client.connect()
-    await client.query(SQL)
-    await client.end()
-    console.log('Done')
+        connectionString: connectionString
+    });
+
+    try {
+        await client.connect();
+        // Replace `SQL` with your actual SQL query
+        await client.query(SQL);
+        console.log('Table created successfully.');
+    } catch (error) {
+        console.error('Error creating table:', error);
+    } finally {
+        await client.end();
+        console.log('Done');
+    }
 }
-main()
+
+main();
