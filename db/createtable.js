@@ -21,7 +21,6 @@ async function main() {
 
     try {
         await client.connect();
-        // Replace `SQL` with your actual SQL query
         await client.query(SQL);
         console.log('Table created successfully.');
     } catch (error) {
