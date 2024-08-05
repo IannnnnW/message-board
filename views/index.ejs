@@ -4,43 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Messages</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        body{
-            margin: 1rem;
-        }
-        .message{
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 1rem;
-        }
-        .card{
-            display: flex;
-            flex-direction: column;
-            border: 1px solid lightgrey;
-            padding: 1rem;
-            border-radius: 10px;
-            width: 20%;
-        }
-        a{
-            text-decoration: none;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/style.css"/>
 </head>
 <body>
-    <h2><%= title %></h2>
-    <% messages.forEach((message) => { %>
-        <div class="message">
-            <h4><%= message.name %></h4>
-            <div class="card">
-                <span><%= message.text %></span>
-                <span><%= message.added %></span>
+    <main id="messages-main">
+        <aside id="chats-aside">
+            <div class="d-flex justify-content-between">
+                <h4 class="px-3 mt-2"><i class="bi bi-chat-square-dots"></i> Chats</h4>
+                <i class="bi bi-three-dots-vertical p-2" id="menu-dots"></i>
             </div>
-        </div>
-    <% }) %>
-    <a href="/new">Add Yours!</a>
+            <div class="d-flex flex-column">
+                <div class="chats-item">
+                    <img src="the-boys.jpg" class="chat-image"/>
+                    <span>The Boys 🔥</span>
+                </div>
+                <span class="chats-item">
+                    <img src="dinner.jpg" class="chat-image"/>
+                    <span>Christmas Dinner 🍽️</span>
+                </span>
+                <span class="chats-item">
+                    <img src="soccer.jpg" class="chat-image"/>
+                    <span>Football ⚽</span>
+                </span>
+                <span class="chats-item">
+                    <img src="books.jpeg" class="chat-image"/>
+                    <span>CSC 2024 ⚽</span>
+                </span>
+                <span class="chats-item">
+                    <img src="react.webp" class="chat-image"/>
+                    <span>React-ers 🖥️</span>
+                </span>
+                <span class="chats-item">
+                    <img src="books.jpeg" class="chat-image"/>
+                    <span>ML Ops 🖥️</span>
+                </span>
+                <span class="chats-item">
+                    <img src="books.jpeg" class="chat-image"/>
+                    <span>Computer Security 👮</span>
+                </span>
+                <span class="chats-item">
+                    <img src="dinner.jpg" class="chat-image"/>
+                    <span>Family 👫</span>
+                </span>
+                <span class="chats-item">
+                    <img src="books.jpeg" class="chat-image"/>
+                    <span>Computer Security 👮</span>
+                </span>
+                <span class="chats-item">
+                    <img src="react.webp" class="chat-image"/>
+                    <span>React-ers 🖥️</span>
+                </span>
+                <span class="chats-item">
+                    <img src="books.jpeg" class="chat-image"/>
+                    <span>ML Ops 🖥️</span>
+                </span>
+                <span class="chats-item">
+                    <img src="books.jpeg" class="chat-image"/>
+                    <span>Computer Security 👮</span>
+                </span>
+                <span class="chats-item">
+                    <img src="dinner.jpg" class="chat-image"/>
+                    <span>Family 👫</span>
+                </span>
+            </div>
+        </aside>
+        <section class="d-flex flex-column justify-content-between" id="chat-body">
+            <div class="d-flex justify-content-between align-items-center chat-top">
+                <span id="latest-title" class="px-2"><i class="bi bi-three-dots-vertical" id="toggle-sidebar"></i><i class="bi bi-clock"></i> Latest</span>
+                <i class="bi bi-telephone mx-4"></i>
+            </div>
+            <% if(!locals.messages.length) { %>
+                <div class="d-flex justify-content-center align-items-center empty-container">
+                    <span class="text-align-center">No messages yet!</span>
+                </div>
+            <% } else { %>
+           <div class="messages-container">
+                <% messages.forEach((message) => { %>
+                    <div class="message">
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="person.webp" class="person"/>
+                            <h6><%= message.name %></h6>
+                        </div>
+                        <div class="message-info w-75">
+                            <span><%= message.text %></span>
+                            <span class="message-info-time"><%= message.added %></span>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } %>
+           </div>
+            <form method="POST" action="/new/submit-message" class="message-form">
+                <input placeholder="Name" name="name" type="text" id="name"/>
+                <textarea placeholder="Message" name="message" type="text" id="message" rows="5"></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script>
+    const dots = document.getElementById("toggle-sidebar")
+    const chats = document.getElementById("chats-aside")
+    const main = document.getElementById("chat-body")
+
+    dots.addEventListener('click', ()=>{
+        dots.classList.toggle('active')
+        chats.classList.toggle('active')
+        main.classList.toggle('active')
+    })
+    
+    const menuDots = document.getElementById("menu-dots")
+
+    menuDots.addEventListener('click', ()=>{
+        chats.classList.toggle('active')
+    })
+</script>
 </html>

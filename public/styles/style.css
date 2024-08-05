@@ -1,0 +1,146 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#messages-main{
+    display: grid;
+    grid-template-columns: 1.5fr 5fr;
+}
+#latest-title{
+    font-size: 18px;
+    width: 80%;
+}
+.person{
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+}
+.message{
+    margin-bottom: 1rem;
+}
+.message-info{
+    margin-left: 3rem;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid lightgray;
+    border-radius:  0 10px 10px 10px;
+    padding: 0.5rem;
+    background-color: #218aff;
+    color: white;
+}
+.message-info-time{
+    font-size: 0.8rem;
+    color:lightgray;
+    font-style: italic;
+    margin-top: 1.5rem;
+}
+.message-form{
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem;
+}
+button{
+    width: 25%;
+    align-self: self-end;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+input, textarea{
+    border-radius: 5px;
+    padding: 0.3rem;
+}
+.messages-container{
+    overflow-y: scroll;
+    height: 390px;
+    padding: 0.5rem;
+}
+
+.empty-container{
+    height: 390px;
+    color: lightgray;
+}
+ul{
+    list-style: none;
+}
+.chats-item{
+    border-bottom: 1px solid lightgray;
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.chats-item:hover{
+    background-color: rgb(243, 241, 241);
+}
+
+#chats-aside{
+    border-right: 1px solid lightgray;
+    height: 100vh;
+    width: 300px;
+    overflow-y: scroll;
+}
+
+.chat-image{
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+}
+
+.chat-top{
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#toggle-sidebar {
+    display: none;
+}
+
+@media only screen and (max-width: 678px) {
+    #toggle-sidebar {
+        display:inline
+    }
+
+    #messages-main{
+        grid-template-columns: 0 1fr;
+    }
+    #chat-body.active{
+        width: 100%;
+        height: 100vh;
+    }
+    .messages-container{
+        overflow-y: scroll;
+        height: 620px;
+        padding: 0.5rem;
+    }
+    #chats-aside{
+        border-right: 1px solid lightgray;
+        height: 100vh;
+        width: 300px;
+        overflow-y: scroll;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        margin-right: 100px;
+    }
+    #chats-aside.active{
+        transform: translateX(0);
+    }
+    #chats-aside{
+        border-right: 1px solid lightgray;
+        height: 100vh;
+        width: 300px;
+        overflow-y: scroll;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        margin-right: 100px;
+        background-color: #fff;
+    }
+}
+
